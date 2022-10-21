@@ -90,9 +90,29 @@
             font-size: clamp(1.15rem, 0.8537rem + 1.3171vw, 2.5rem);
         }
 
-        .header p {
+        .header div {
+            background-color: white;
+            width: fit-content;
+            margin-inline: auto;
+            padding-inline: 1rem;
+            border-radius: .5rem;
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .header div p {
             font-size: clamp(0.75rem, 0.6402rem + 0.4878vw, 1.25rem);
             text-align: center;
+        }
+
+        .header div p span {
+            text-decoration: underline;
+        }
+
+        .header div svg {
+            width: 1.75rem;
+            fill: rgb(106, 215, 239);
         }
     </style>
 
@@ -101,7 +121,17 @@
             <main class="main" id="main">
                 <div class="header">
                     <h3>XTerm 256 Color Cheat Sheet</h3>
-                    <p>Use https://tired-fox.github.io/256-color-table/#xterm-{number} to link to a certain row</p>
+                    <div>
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6">
+                            <path fill-rule="evenodd"
+                                d="M2.25 12c0-5.385 4.365-9.75 9.75-9.75s9.75 4.365 9.75 9.75-4.365 9.75-9.75 9.75S2.25 17.385 2.25 12zm8.706-1.442c1.146-.573 2.437.463 2.126 1.706l-.709 2.836.042-.02a.75.75 0 01.67 1.34l-.04.022c-1.147.573-2.438-.463-2.127-1.706l.71-2.836-.042.02a.75.75 0 11-.671-1.34l.041-.022zM12 9a.75.75 0 100-1.5.75.75 0 000 1.5z"
+                                clip-rule="evenodd" />
+                        </svg>
+
+
+                        <p>Use <span>https://tired-fox.github.io/256-color-table/#xterm-{number}</span> to link to a
+                            certain row</p>
+                    </div>
                 </div>
                 <table class="color-table">
                     <thead>
