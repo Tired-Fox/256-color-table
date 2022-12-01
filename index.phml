@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+    <!-- 
+        https://getcssscan.com/css-box-shadow-examples
+        https://clamp.font-size.app/?config=eyJyb290IjoiMTYiLCJtaW5XaWR0aCI6IjUwMHB4IiwibWF4V2lkdGgiOiIxNDQwcHgiLCJtaW5Gb250U2l6ZSI6IjEwcmVtIiwibWF4Rm9udFNpemUiOiIxNHJlbSJ9
+    -->
+
+    <head>
+        <meta charset="utf-8">
+        <title>XTerm Color Cheat Sheet</title>
+        <meta name="description" content="List of 256 colors for Xterm prompt (console).">
+        <meta name="robots" content="noarchive">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="referrer" content="no-referrer">
+        <link rel="stylesheet" href="style.css">
+        <script src="logic.js" defer></script>
+    </head>
+    <python>
+        import sys
+        sys.path.insert(0, "./")
+        from colors import XTERM_COLORS
+    </python>
+
+    <body class="page">
+        <div id="modals">
+            <dialog id="color-info-box">
+                <button id="color-info-box-close" onclick="closeColor()">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                        stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+
+                </button>
+                <div id="color-sample"></div>
+                <div id="color-label">
+                    <button id="color-name" onclick="copyText('color-name')">Name</button>
+                    <span>(<button id="color-id" onclick="copyText('color-id')">id</button>)</span>
+                </div>
+                <div id="color-codes">
+                    <div>
+                        <strong>HEX</strong>
+                        <button id="color-hex" onclick="copyText('color-hex')">
+                            #000
+                        </button>
+                    </div>
+                    <div>
+                        <strong>RGB</strong>
+                        <button id="color-rgb" onclick="copyText('color-rgb')">
+                            rgb(0, 0, 0)
+                        </button>
+                    </div>
+                    <div>
+                        <strong>HSL</strong>
+                        <button id="color-hsl" onclick="copyText('color-hsl')">
+                            hsl(0, 0%, 0%)
+                        </button>
+                    </div>
+                </div>
+            </dialog>
+
+            <dialog id="color-search">
+                <input id="color-search-input" type="number" onkeypress="checkKeys">
+                <button onclick="toggleSearch()">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                        stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                            d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z" />
+                    </svg>
+                </button>
+            </dialog>
+        </div>
+        <div class="wrapper">
+            <main class="main" id="main">
+                <div class="header">
+                    <h3>XTerm Color Cheat Sheet</h3>
+                    <div id="callouts">
+                        <div>
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
+                                class="w-6 h-6">
+                                <path fill-rule="evenodd"
+                                    d="M2.25 12c0-5.385 4.365-9.75 9.75-9.75s9.75 4.365 9.75 9.75-4.365 9.75-9.75 9.75S2.25 17.385 2.25 12zm8.706-1.442c1.146-.573 2.437.463 2.126 1.706l-.709 2.836.042-.02a.75.75 0 01.67 1.34l-.04.022c-1.147.573-2.438-.463-2.127-1.706l.71-2.836-.042.02a.75.75 0 11-.671-1.34l.041-.022zM12 9a.75.75 0 100-1.5.75.75 0 000 1.5z"
+                                    clip-rule="evenodd" />
+                            </svg>
+
+
+                            <p>
+                                Use
+                                <span class="link">
+                                    #xterm-[number]
+                                </span>
+                                at the end of the url to link to a certain color card
+                            </p>
+                        </div>
+                        <div>
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
+                                class="w-6 h-6">
+                                <path fill-rule="evenodd"
+                                    d="M2.25 12c0-5.385 4.365-9.75 9.75-9.75s9.75 4.365 9.75 9.75-4.365 9.75-9.75 9.75S2.25 17.385 2.25 12zm8.706-1.442c1.146-.573 2.437.463 2.126 1.706l-.709 2.836.042-.02a.75.75 0 01.67 1.34l-.04.022c-1.147.573-2.438-.463-2.127-1.706l.71-2.836-.042.02a.75.75 0 11-.671-1.34l.041-.022zM12 9a.75.75 0 100-1.5.75.75 0 000 1.5z"
+                                    clip-rule="evenodd" />
+                            </svg>
+
+
+                            <p>
+                                Click on a color card to see more information.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="color-table">
+                    <div @for="xterm, name, hex, rgb, hsl in XTERM_COLORS" id="xterm-{xterm}"
+                        onclick="openColor({xterm})">
+                        <div style="background-color:{hex};"></div>
+                        <div>
+                            <div id="code_xterm_{xterm}">
+                                {xterm}
+                            </div>
+                            <div id="code_name_{xterm}">
+                                {name}
+                            </div>
+                        </div>
+                        <input id="code_hex_{xterm}" :value="hex" hidden>
+                        <input id="code_rgb_{xterm}" :value="rgb" hidden>
+                        <input id="code_hsl_{xterm}" :value="hsl" hidden>
+                    </div>
+                    <!-- <div @for="xterm, name, hex, rgb, hsl in XTERM_COLORS" id="xterm-{xterm}">
+                        <div style="background:{hex};"></div>
+                        <button onclick="openColor({xterm})">
+                            <div id="code_xterm_{xterm}">{xterm}</div>
+                            <div id="code_name_{xterm}">{name}</div>
+                            <div id="code_hex_{xterm}">{hex}</div>
+                            <div id="code_rgb_{xterm}">{rgb}</div>
+                            <div id="code_hsl_{xterm}">{hsl}</div>
+                        </button>
+                    </div> -->
+                </div>
+            </main>
+        </div>
+    </body>
+
+</html>
