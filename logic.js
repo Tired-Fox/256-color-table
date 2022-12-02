@@ -32,7 +32,7 @@ function toggleSearch() {
 function search(value) {
   const element = document.getElementById(`xterm-${value}`)
   if (element) {
-    element.scrollIntoView({behavior: "smooth", block: "start", inline: "nearest"});
+    element.scrollIntoView({behavior: "smooth", block: "start"});
     toggleSearch();
     document.getElementById("color-info-box").close();
   }
