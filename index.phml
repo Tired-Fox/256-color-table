@@ -16,8 +16,6 @@
         <script src="logic.js" defer></script>
     </head>
     <python>
-        import sys
-        sys.path.insert(0, "./")
         from colors import XTERM_COLORS
     </python>
 
