@@ -30,7 +30,6 @@ function toggleSearch() {
 }
 
 function search(value) {
-  console.log(value);
   const element = document.getElementById(`xterm-${value}`)
   if (element) {
     element.scrollIntoView({behavior: "smooth", block: "start", inline: "nearest"});
@@ -61,7 +60,6 @@ function checkKeys(event) {
       }
       break;
     default:
-      // console.log(event.key);
       previous_key = event.key;
   }
 }
@@ -89,11 +87,6 @@ function openColor(num) {
   let crgb = document.getElementById(`code_rgb_${num}`);
   let chsl = document.getElementById(`code_hsl_${num}`);
 
-  console.log(cname);
-  console.log(cid);
-  console.log(chex);
-  console.log(crgb);
-  console.log(chsl);
   if (name && id && hex && rgb && hsl) {
     if (cname && cid && chex && crgb && chsl) {
       colorSample.style.backgroundColor = `${chex.value}`;
