@@ -1,4 +1,4 @@
 from phml import PHMLCore
 
-core = PHMLCore(scopes=["./"]).load("index.phml")
-core.write("index.html")
+core = PHMLCore().load("index.phml")
+core.write("index.html", scopes=["./"])
